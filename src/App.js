@@ -1,6 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import './App.css';
 import "antd/dist/antd.less";
 import './App.less';
@@ -14,19 +12,14 @@ import {
 function App() {
   return (
     <Router>
-    <div>
       <Switch>
-        <Route path="/about">
-          <About />
+        <Route path="/about">          
         </Route>
-        <Route path="/topics">
-          <Topics />
+        <Route path="/topics">          
         </Route>
-        <Route path="/">
-          <Home />
+        <Route path="/">          
         </Route>
       </Switch>
-    </div>
   </Router>
   );
 }
