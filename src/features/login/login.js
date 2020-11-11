@@ -13,10 +13,10 @@ const LoginForm = (props) => {
     const [password, setPassword] = useState("");
     const layout = {
         labelCol: { span: 8 },
-        wrapperCol: { span: 16 },
+        wrapperCol: { span: 4 },
       };
       const tailLayout = {
-        wrapperCol: { offset: 8, span: 16 },
+        wrapperCol: { offset: 8, span: 4 },
       };
     return (
         <div id="login-page">

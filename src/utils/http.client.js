@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from 'axios';
+import axios from 'axios';
 import Cookies from 'universal-cookie';
 
 const base_url = process.env.NODE_ENV === "production" ? 
@@ -10,10 +10,11 @@ const http_instance = axios.create({
 });
 
 let init = function (...inst) {
+    debugger;
     const cookies = new Cookies();;
     const _user = cookies.get("user");
 
-    const user = JSON.parse(_user === null ? "{}" : _user);
+    const user = JSON.parse(_user ? _user : "{}");
 
     if (!user && !user.token) {
         inst.forEach(ins => {

@@ -10,22 +10,10 @@ import {
 import LoginForm from './features/login/login';
 
 function App() {
+  console.log("test");
   return (
-    <>
-      <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/users">Users</Link>
-            </li>
-          </ul>
-        </nav>
-        <Router>
+    <>      
+        <Router>        
           <Switch>        
             <Route path="/">          
               <LoginForm/>
