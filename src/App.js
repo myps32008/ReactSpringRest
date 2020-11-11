@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import "antd/dist/antd.less";
 import './App.less';
 import {
@@ -8,19 +7,32 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import LoginForm from './features/login/login';
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path="/about">          
-        </Route>
-        <Route path="/topics">          
-        </Route>
-        <Route path="/">          
-        </Route>
-      </Switch>
-  </Router>
+    <>
+      <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/users">Users</Link>
+            </li>
+          </ul>
+        </nav>
+        <Router>
+          <Switch>        
+            <Route path="/">          
+              <LoginForm/>
+            </Route>
+          </Switch>
+        </Router>
+    </>    
   );
 }
 
