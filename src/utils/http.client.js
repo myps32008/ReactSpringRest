@@ -9,8 +9,7 @@ const http_instance = axios.create({
     baseURL: `${base_url}/api/`
 });
 
-let init = function (...inst) {
-    debugger;
+let init = function (...inst) {    
     const cookies = new Cookies();;
     const _user = cookies.get("user");
 

@@ -1,3 +1,4 @@
+
 export interface IUserInfo {
     id: number,
     token: string,
@@ -12,4 +13,8 @@ export interface IAccessMenu {
     url: string,    
     icon: number,
     name: string
+}
+
+export interface IAppStore {
+    userInfo: IUserInfo
 }

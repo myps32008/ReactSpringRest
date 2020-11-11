@@ -1,16 +1,24 @@
-import ReactDOM from 'react-dom';
-import 'antd/dist/antd.css';
+import { useHistory, useLocation } from "react-router-dom";
 import { Form, Input, Button,  Checkbox } from 'antd';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  updateUserInfo, userLogin
-} from './loginSlice';
+import { userLogin } from './loginSlice';
+import {IAppStore} from '../../const/interface';
 
-const LoginForm = (props) => {
+const LoginForm = (props:any) => {
     const dispatch = useDispatch();
     const [account, setAccount] = useState("");
     const [password, setPassword] = useState("");
+    const history = useHistory();
+    const location = useLocation();
+    const { from } :any = location.state || { from: { pathname: "/" } };
+    const userInfo = useSelector((state: IAppStore) => state.userInfo);
+    const login = () => {
+        console.log(account + password);
+        if (true) return;
+        dispatch(userLogin(account, password));
+        history.replace(from);
+      };
     const layout = {
         labelCol: { span: 8 },
         wrapperCol: { span: 4 },
@@ -18,11 +26,15 @@ const LoginForm = (props) => {
       const tailLayout = {
         wrapperCol: { offset: 8, span: 4 },
       };
+    
+      const test = () => {
+        console.log("test");
+      }
     return (
         <div id="login-page">
             <Form
                 {...layout}
-                name="basic"
+                name="login-box"
                 initialValues={{ remember: true }}                
                 >
                 <Form.Item
@@ -30,7 +42,7 @@ const LoginForm = (props) => {
                     name="username"
                     rules={[{ required: true, message: 'Please input your username!' }]}
                 >
-                    <Input />
+                    <Input onChange={e => setAccount(e.currentTarget.value)}/>
                 </Form.Item>
 
                 <Form.Item
@@ -38,7 +50,7 @@ const LoginForm = (props) => {
                     name="password"
                     rules={[{ required: true, message: 'Please input your password!' }]}
                 >
-                    <Input.Password />
+                    <Input.Password onChange={e => setPassword(e.currentTarget.value)}/>
                 </Form.Item>
 
                 <Form.Item {...tailLayout} name="remember" valuePropName="checked">
@@ -46,7 +58,7 @@ const LoginForm = (props) => {
                 </Form.Item>
 
                 <Form.Item {...tailLayout}>
-                    <Button type="primary" htmlType="submit">
+                    <Button type="primary" htmlType="submit" onClick={login}>
                     Submit
                     </Button>
                 </Form.Item>
