@@ -34,6 +34,7 @@ export const userInfoSlice = createSlice({
   reducers: {    
     updateUserInfo: (state, action) => {      
       state.loginStatus = action.payload;
+      cookies.set("user", state);
     },    
   },
   extraReducers: {

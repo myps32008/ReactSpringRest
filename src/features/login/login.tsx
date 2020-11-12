@@ -2,7 +2,7 @@ import { Form, Input, Button,  Checkbox } from 'antd';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from "react-router-dom";
-import { userLogin, updateUserInfo } from './loginSlice';
+import { userLogin } from './loginSlice';
 import logo from '../../static/images/logo192.png';
 import { IAppStore } from '../../const/interface';
 
@@ -13,18 +13,20 @@ const LoginForm = (props:any) => {
     const location = useLocation();
     const { from } :any = location.state || { from: { pathname: "/" } };
     const userStatus = useSelector((state: IAppStore) => state.userInfo);
+
     const login = () => {
         const account = form.getFieldValue("username");
         const password = form.getFieldValue("password");
         if (userStatus.loading) return;
         dispatch(userLogin(account, password));        
-      };
-      useEffect(()=>{
+    };
+    useEffect(()=>{
         if (userStatus.loginStatus) {
             from.pathname = from.pathname === "/login" ? "/" : from.pathname;
             history.replace(from);
         }
-      }, [userStatus.loginStatus]);
+    }, [userStatus.loginStatus, history, from]);
+
     return (
         <div id="login-page">
             <Form                
