@@ -1,48 +1,40 @@
-import { useHistory, useLocation } from "react-router-dom";
 import { Form, Input, Button,  Checkbox } from 'antd';
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { userLogin } from './loginSlice';
-import {IAppStore} from '../../const/interface';
-
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useLocation } from "react-router-dom";
+import { userLogin, updateUserInfo } from './loginSlice';
+import logo from '../../static/images/logo192.png';
+import { IAppStore } from '../../const/interface';
+import { Cookies } from 'react-cookie';
 const LoginForm = (props:any) => {
     const dispatch = useDispatch();
-    const [account, setAccount] = useState("");
-    const [password, setPassword] = useState("");
+    const [form] = Form.useForm();
     const history = useHistory();
     const location = useLocation();
     const { from } :any = location.state || { from: { pathname: "/" } };
-    const userInfo = useSelector((state: IAppStore) => state.userInfo);
+    const userStatus = useSelector((state: IAppStore) => state.userInfo);
     const login = () => {
-        console.log(account + password);
+        const account = form.getFieldValue("username");
+        const password = form.getFieldValue("password");        
+        dispatch(updateUserInfo(true));        
+        console.log(userStatus);
         if (true) return;
-        dispatch(userLogin(account, password));
-        history.replace(from);
-      };
-    const layout = {
-        labelCol: { span: 8 },
-        wrapperCol: { span: 4 },
-      };
-      const tailLayout = {
-        wrapperCol: { offset: 8, span: 4 },
-      };
-    
-      const test = () => {
-        console.log("test");
-      }
+        dispatch(userLogin(account, password));        
+      };    
     return (
         <div id="login-page">
-            <Form
-                {...layout}
+            <Form                
                 name="login-box"
-                initialValues={{ remember: true }}                
+                initialValues={{ remember: true }}
+                form={form}      
                 >
+                    <img src={logo} alt="logo"/>
                 <Form.Item
                     label="Username"
                     name="username"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
+                    rules={[{ required: true, message: 'Please input your username!' }]}                    
                 >
-                    <Input onChange={e => setAccount(e.currentTarget.value)}/>
+                    <Input/>
                 </Form.Item>
 
                 <Form.Item
@@ -50,14 +42,14 @@ const LoginForm = (props:any) => {
                     name="password"
                     rules={[{ required: true, message: 'Please input your password!' }]}
                 >
-                    <Input.Password onChange={e => setPassword(e.currentTarget.value)}/>
+                    <Input.Password/>
                 </Form.Item>
 
-                <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+                <Form.Item name="remember" valuePropName="checked">
                     <Checkbox>Remember me</Checkbox>
                 </Form.Item>
 
-                <Form.Item {...tailLayout}>
+                <Form.Item>
                     <Button type="primary" htmlType="submit" onClick={login}>
                     Submit
                     </Button>

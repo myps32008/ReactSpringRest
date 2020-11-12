@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "antd/dist/antd.less";
 import 'antd/dist/antd.css';
-import './App.less';
 import {
   BrowserRouter as Router,
   Switch,
   Route,  
   Redirect, 
 } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { IAppStore } from './const/interface';
 import LoginForm from './features/login/login';
 import Cookies from 'universal-cookie';
 
@@ -18,6 +19,7 @@ function App() {
           <Switch>        
             <Route path="/login" component={LoginForm}/>            
             <RouteAuthen>
+              <Route path="/"/>
             </RouteAuthen>
           </Switch>          
         </Router>
@@ -25,16 +27,15 @@ function App() {
   );
 }
 
-function RouteAuthen({children, ...rest}) {
-  const cookies = new Cookies();;
-  const _user = cookies.get("user");  
+function RouteAuthen({children, ...rest}:any) {  
+  const userStatus = useSelector((state:IAppStore) => state.userInfo);     
   return (
     <Route
       {...rest}
       render=
         {
           ({ location }) =>
-            _user && _user.token ? (children) : (
+            userStatus.loginStatus ? (children) : (
               <Redirect
                 to={{
                   pathname: "/login",

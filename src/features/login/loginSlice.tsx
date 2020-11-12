@@ -1,8 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import {IUserInfo} from '../../const/interface';
 import http from '../../utils/http.client';
+import { Cookies } from 'react-cookie';
 
-const initialState: IUserInfo = {
+const cookies = new Cookies();
+const _user = cookies.get("user"); 
+
+const initialState: IUserInfo = _user || {
     id: 0,
     token: '',
     role: 0,
@@ -28,9 +32,9 @@ export const userInfoSlice = createSlice({
   name: 'userInfo',
   initialState,
   reducers: {    
-    updateUserInfo: (state, action) => {
-      state = action.payload;
-    },
+    updateUserInfo: (state, action) => {      
+      state.loginStatus = action.payload;
+    },    
   },
   extraReducers: {
     'userLogin/pending': (state, action) => {      
@@ -40,6 +44,7 @@ export const userInfoSlice = createSlice({
       state.loginStatus = action.payload.status;      
       state.token = action.payload.token;
       state.loading = false;
+      
     },
     'userLogin/rejected': (state, action) => {
       state.loginStatus = false;

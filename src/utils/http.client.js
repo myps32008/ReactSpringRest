@@ -10,12 +10,9 @@ const http_instance = axios.create({
 });
 
 let init = function (...inst) {    
-    const cookies = new Cookies();;
-    const _user = cookies.get("user");
-
-    const user = JSON.parse(_user ? _user : "{}");
-
-    if (!user && !user.token) {
+    const cookies = new Cookies();
+    const user = cookies.get("user");    
+    if (user) {
         inst.forEach(ins => {
             ins.defaults.headers.common['Authorization'] = 'Bearer ' + user.token;
         });
