@@ -44,7 +44,7 @@ export const userInfoSlice = createSlice({
       state.loginStatus = action.payload.status;      
       state.token = action.payload.token;
       state.loading = false;
-      
+      cookies.set("user", state);
     },
     'userLogin/rejected': (state, action) => {
       state.loginStatus = false;

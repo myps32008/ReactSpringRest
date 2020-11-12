@@ -1,11 +1,11 @@
 import { Form, Input, Button,  Checkbox } from 'antd';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from "react-router-dom";
 import { userLogin, updateUserInfo } from './loginSlice';
 import logo from '../../static/images/logo192.png';
 import { IAppStore } from '../../const/interface';
-import { Cookies } from 'react-cookie';
+
 const LoginForm = (props:any) => {
     const dispatch = useDispatch();
     const [form] = Form.useForm();
@@ -15,12 +15,16 @@ const LoginForm = (props:any) => {
     const userStatus = useSelector((state: IAppStore) => state.userInfo);
     const login = () => {
         const account = form.getFieldValue("username");
-        const password = form.getFieldValue("password");        
-        dispatch(updateUserInfo(true));        
-        console.log(userStatus);
-        if (true) return;
+        const password = form.getFieldValue("password");
+        if (userStatus.loading) return;
         dispatch(userLogin(account, password));        
-      };    
+      };
+      useEffect(()=>{
+        if (userStatus.loginStatus) {
+            from.pathname = from.pathname === "/login" ? "/" : from.pathname;
+            history.replace(from);
+        }
+      }, [userStatus.loginStatus]);
     return (
         <div id="login-page">
             <Form                
