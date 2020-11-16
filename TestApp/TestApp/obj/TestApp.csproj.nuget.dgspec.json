@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Csharp\\TestApp\\TestApp\\TestApp.csproj": {}
+    "F:\\Csharp\\ReactSpringRest\\TestApp\\TestApp\\TestApp.csproj": {}
   },
   "projects": {
-    "F:\\Csharp\\TestApp\\TestApp\\TestApp.csproj": {
+    "F:\\Csharp\\ReactSpringRest\\TestApp\\TestApp\\TestApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Csharp\\TestApp\\TestApp\\TestApp.csproj",
+        "projectUniqueName": "F:\\Csharp\\ReactSpringRest\\TestApp\\TestApp\\TestApp.csproj",
         "projectName": "TestApp",
-        "projectPath": "F:\\Csharp\\TestApp\\TestApp\\TestApp.csproj",
+        "projectPath": "F:\\Csharp\\ReactSpringRest\\TestApp\\TestApp\\TestApp.csproj",
         "packagesPath": "C:\\Users\\Daniel Tran\\.nuget\\packages\\",
-        "outputPath": "F:\\Csharp\\TestApp\\TestApp\\obj\\",
+        "outputPath": "F:\\Csharp\\ReactSpringRest\\TestApp\\TestApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

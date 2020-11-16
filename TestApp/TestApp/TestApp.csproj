@@ -10,9 +10,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\" />
-    <Folder Include="Logic\" />
-    <Folder Include="Constant\" />
+    <Folder Include="Constant\IService\" />
+    <Folder Include="Constant\Enum\" />
+    <Folder Include="Service\" />
+    <Folder Include="DTO\" />
   </ItemGroup>
 
 
