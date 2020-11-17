@@ -21,3 +21,11 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+TestApp/TestApp/bin/Debug/netcoreapp3.1/TestApp.dll
+TestApp/TestApp/obj/Debug/netcoreapp3.1/TestApp.csprojAssemblyReference.cache
+TestApp/TestApp/obj/Debug/netcoreapp3.1/TestApp.dll
+TestApp/TestApp/obj/Debug/netcoreapp3.1/TestApp.MvcApplicationPartsAssemblyInfo.cache
+TestApp/TestApp/obj/Debug/netcoreapp3.1/TestApp.pdb
+TestApp/TestApp/obj/Debug/netcoreapp3.1/TestApp.genruntimeconfig.cache
+TestApp/TestApp/obj/Debug/netcoreapp3.1/TestApp.csproj.CoreCompileInputs.cache
+TestApp/TestApp/obj/Debug/netcoreapp3.1/TestApp.csproj.FileListAbsolute.txt
