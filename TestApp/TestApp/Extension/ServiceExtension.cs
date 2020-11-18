@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Entities;
+using Contracts;
+using Repository;
 
 namespace App.Extension
 {
@@ -21,6 +23,10 @@ namespace App.Extension
         {
             services.AddDbContext<RepositoryContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+        }
+        public static void ConfigureRepository(this IServiceCollection services)
+        {
+            services.AddScoped<IEmployeesRepository, EmployeesRepository>();
         }
     }
 }

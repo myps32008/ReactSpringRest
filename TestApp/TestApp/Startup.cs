@@ -30,6 +30,7 @@ namespace TestApp
         {            
             services.ConfigureCors();
             services.ConfigureDbContext(Configuration);
+            services.ConfigureRepository();
             services.AddControllers();
             services.AddSwaggerGen();
         }

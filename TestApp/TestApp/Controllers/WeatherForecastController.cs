@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Entities;
 using Entities.Models;
+using Contracts;
 
 namespace TestApp.Controllers
 {
@@ -19,11 +18,11 @@ namespace TestApp.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
-        private readonly RepositoryContext _repository;
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, RepositoryContext context)
+        private readonly IEmployeesRepository _employeeRepository;
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IEmployeesRepository repository)
         {
             _logger = logger;
-            _repository = context;
+            _employeeRepository = repository;
         }
 
         [HttpGet]
@@ -40,8 +39,8 @@ namespace TestApp.Controllers
         }
         [HttpGet("/GetEmployee")]
         public IEnumerable<Employees> GetEmployee()
-        {
-            return _repository.Employees.ToArray();
+        {            
+            return _employeeRepository.FindAll().ToList();
         }
     }
 }
