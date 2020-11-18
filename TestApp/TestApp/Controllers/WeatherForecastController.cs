@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using TestApp.Entities;
-using TestApp.Respository;
+using Entities;
+using Entities.Models;
 
 namespace TestApp.Controllers
 {
@@ -19,8 +19,8 @@ namespace TestApp.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
-        private readonly TestDbContext _repository;
-        public WeatherForecastController(ILogger<WeatherForecastController> logger , TestDbContext context)
+        private readonly RepositoryContext _repository;
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, RepositoryContext context)
         {
             _logger = logger;
             _repository = context;
@@ -39,7 +39,7 @@ namespace TestApp.Controllers
             .ToArray();
         }
         [HttpGet("/GetEmployee")]
-        public IEnumerable<EmployeeEntities> GetEmployee()
+        public IEnumerable<Employees> GetEmployee()
         {
             return _repository.Employees.ToArray();
         }

@@ -29,3 +29,6 @@ TestApp/TestApp/obj/Debug/netcoreapp3.1/TestApp.pdb
 TestApp/TestApp/obj/Debug/netcoreapp3.1/TestApp.genruntimeconfig.cache
 TestApp/TestApp/obj/Debug/netcoreapp3.1/TestApp.csproj.CoreCompileInputs.cache
 TestApp/TestApp/obj/Debug/netcoreapp3.1/TestApp.csproj.FileListAbsolute.txt
+/ClientApp/node_modules
+/TestApp/Entities/obj
+/TestApp/Entities/bin

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TestApp.Entities
+namespace Entities.Models
 {
-    public class EmployeeEntities
+    [Table("Employees")]
+    public class Employees
     {
         [Key]
         public int EmployeeID { get; set; }
