@@ -21,5 +21,10 @@ namespace App.Controllers
         {
             return _employeeRepo.FindAll().ToList();
         }
+        [HttpGet]
+        public Employees FindEmployee(int id)
+        {
+            return _employeeRepo.FindByCondition(x => x.EmployeeID == id).FirstOrDefault();
+        }
     }
 }
