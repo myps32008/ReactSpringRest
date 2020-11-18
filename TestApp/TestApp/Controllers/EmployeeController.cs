@@ -8,9 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.Controllers
-{
-    [Route("api/[controller]")]
-    [ApiController]
+{        
     public class EmployeeController : ProjectBaseController
     {
         private readonly IEmployeesRepository _employeeRepo;
@@ -18,7 +16,7 @@ namespace App.Controllers
         {
             _employeeRepo = employeesRepository;
         }
-        [HttpGet("/GetEmployee")]
+        [HttpGet]
         public IEnumerable<Employees> GetEmployee()
         {
             return _employeeRepo.FindAll().ToList();
