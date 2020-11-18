@@ -30,5 +30,9 @@ namespace App.Extension
             services.AddScoped<IEmployeesRepository, EmployeesRepository>();
             services.AddSingleton<ILoggerProject, LoggerService>();
         }
+        public static void ConfigureHelper(this IServiceCollection services)
+        {            
+            services.AddSingleton<ILoggerProject, LoggerService>();
+        }
     }
 }

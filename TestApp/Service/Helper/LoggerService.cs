@@ -8,14 +8,14 @@ namespace Service.Helper
 {
     public class LoggerService : ILoggerProject
     {
-        private static readonly ILogger _logger = LogManager.GetCurrentClassLogger();
+        private static readonly ILogger _logger = LogManager.GetCurrentClassLogger();        
         public void LogDebug(string message)
         {
             _logger.Debug(message);
         }
-        public void LogError(string message)
+        public void LogError(string controller, Exception ex)
         {
-            _logger.Error(message);
+            _logger.Error("Error at " + controller + "\n" + ex.InnerException + "\n" + ex.Message + "\n" + ex.StackTrace);
         }
         public void LogInfo(string message)
         {
