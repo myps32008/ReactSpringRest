@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Entities;
 using Contracts;
 using Repository;
+using Service.Helper;
 
 namespace App.Extension
 {
@@ -27,6 +28,7 @@ namespace App.Extension
         public static void ConfigureRepository(this IServiceCollection services)
         {
             services.AddScoped<IEmployeesRepository, EmployeesRepository>();
+            services.AddSingleton<ILoggerProject, LoggerService>();
         }
     }
 }
