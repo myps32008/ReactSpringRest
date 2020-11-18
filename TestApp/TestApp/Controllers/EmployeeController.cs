@@ -1,14 +1,14 @@
-﻿using System;
+﻿using App.Base;
+using Contracts;
+using Entities.Models;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Contracts;
-using Entities.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
 namespace App.Controllers
-{        
+{
     public class EmployeeController : ProjectBaseController
     {
         private readonly IEmployeesRepository _employeeRepo;
@@ -22,9 +22,13 @@ namespace App.Controllers
             return _employeeRepo.FindAll().ToList();
         }
         [HttpGet]
-        public Employees FindEmployee(int id)
+        public BaseResult<Employees> FindEmployee(int id)
         {
-            return _employeeRepo.FindByCondition(x => x.EmployeeID == id).FirstOrDefault();
+            var result = _employeeRepo.FindByCondition(x => x.EmployeeID == id).FirstOrDefault();            
+            return new BaseResult<Employees>() { 
+                Data = result,
+                Code = (int)RequestCode.SUCCESS
+            };
         }
     }
 }

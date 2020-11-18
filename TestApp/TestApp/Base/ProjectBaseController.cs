@@ -1,7 +1,7 @@
 ﻿using Contracts;
 using Microsoft.AspNetCore.Mvc;
 
-namespace App
+namespace App.Base
 {
     [ApiController]
     [Route("[controller]/[action]")]

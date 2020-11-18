@@ -34,3 +34,4 @@ TestApp/TestApp/obj/Debug/netcoreapp3.1/TestApp.csproj.FileListAbsolute.txt
 /TestApp/Entities/bin
 /TestApp/Contracts/obj
 /TestApp/Contracts/bin
+/TestApp/.vs
