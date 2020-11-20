@@ -1,5 +1,7 @@
 ﻿using App.Base;
+using AutoMapper;
 using Contracts;
+using DTO;
 using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,9 +14,15 @@ namespace App.Controllers
     public class EmployeeController : ProjectBaseController
     {
         private readonly IEmployeesRepository _employeeRepo;
-        public EmployeeController(ILoggerProject logger, IEmployeesRepository employeesRepository) : base(logger)
+        private readonly IMapper _mapper;
+        public EmployeeController(
+            ILoggerProject logger, 
+            IEmployeesRepository employeesRepository,
+            IMapper mapper) 
+            : base(logger)
         {
             _employeeRepo = employeesRepository;
+            _mapper = mapper;
         }
         [HttpGet]
         public IEnumerable<Employees> GetEmployee()
@@ -22,11 +30,12 @@ namespace App.Controllers
             return _employeeRepo.FindAll().ToList();
         }
         [HttpGet]
-        public BaseResult<Employees> FindEmployee(int id)
+        public BaseResult<EmployeeDTO> FindEmployee(int id)
         {
-            var result = _employeeRepo.FindByCondition(x => x.EmployeeID == id).FirstOrDefault();            
-            return new BaseResult<Employees>() { 
-                Data = result,
+            var result = _employeeRepo.FindByCondition(x => x.EmployeeID == id).FirstOrDefault();
+            var test = _mapper.Map<EmployeeDTO>(result);
+            return new BaseResult<EmployeeDTO>() { 
+                Data = test,
                 Code = (int)RequestCode.SUCCESS
             };
         }
