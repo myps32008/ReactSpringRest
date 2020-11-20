@@ -4,10 +4,8 @@ using Contracts;
 using DTO;
 using Entities.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace App.Controllers
 {
@@ -16,9 +14,9 @@ namespace App.Controllers
         private readonly IEmployeesRepository _employeeRepo;
         private readonly IMapper _mapper;
         public EmployeeController(
-            ILoggerProject logger, 
+            ILoggerProject logger,
             IEmployeesRepository employeesRepository,
-            IMapper mapper) 
+            IMapper mapper)
             : base(logger)
         {
             _employeeRepo = employeesRepository;
@@ -34,7 +32,8 @@ namespace App.Controllers
         {
             var result = _employeeRepo.FindByCondition(x => x.EmployeeID == id).FirstOrDefault();
             var test = _mapper.Map<EmployeeDTO>(result);
-            return new BaseResult<EmployeeDTO>() { 
+            return new BaseResult<EmployeeDTO>()
+            {
                 Data = test,
                 Code = (int)RequestCode.SUCCESS
             };

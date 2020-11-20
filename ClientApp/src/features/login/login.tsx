@@ -17,8 +17,8 @@ const LoginForm = (props:any) => {
     const login = () => {
         const account = form.getFieldValue("username");
         const password = form.getFieldValue("password");
-        if (userStatus.loading) return;
-        dispatch(userLogin(account, password));        
+        // if (userStatus.loading) return;
+        dispatch(userLogin({id: 1}));        
     };
     useEffect(()=>{
         if (userStatus.loginStatus) {

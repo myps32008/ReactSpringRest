@@ -3,10 +3,10 @@ import Cookies from 'universal-cookie';
 
 const base_url = process.env.NODE_ENV === "production" ? 
     "" : 
-    "http://localhost:8080";
+    "https://localhost:44326/";
 
 const http_instance = axios.create({
-    baseURL: `${base_url}/api/`
+    baseURL: `${base_url}`
 });
 
 let init = function (...inst) {    
