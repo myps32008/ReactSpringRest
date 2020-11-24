@@ -18,9 +18,11 @@ const LoginForm = (props:any) => {
         const account = form.getFieldValue("username");
         const password = form.getFieldValue("password");
         // if (userStatus.loading) return;
-        dispatch(userLogin({account, password}));
-        dispatch(testAuthen());
+        dispatch(userLogin({account, password}));        
     };
+    const btnTestAuthen = () => {
+        dispatch(testAuthen());
+    }
     useEffect(()=>{
         if (userStatus.loginStatus) {
             from.pathname = from.pathname === "/login" ? "/" : from.pathname;
@@ -59,6 +61,11 @@ const LoginForm = (props:any) => {
                 <Form.Item>
                     <Button type="primary" htmlType="submit" onClick={login}>
                     Submit
+                    </Button>
+                </Form.Item>
+                <Form.Item>
+                    <Button type="primary" htmlType="submit" onClick={btnTestAuthen}>
+                    Test
                     </Button>
                 </Form.Item>
             </Form>  

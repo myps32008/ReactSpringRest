@@ -31,10 +31,13 @@ export const userLogin = createAsyncThunk('userLogin',
 });
 
 export const testAuthen = createAsyncThunk('testAuthen', 
-  async (_, thunkApi) => {
+  async (_, {getState} :any) => {
+    debugger;
+    const data = getState()    
+    var bearer = 'Bearer ' + data.userInfo.token;    
     const config = {
       headers: { 
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDYyMDg2MTcsImlzcyI6IlRlc3QuY29tIiwiYXVkIjoiVGVzdC5jb20ifQ.RzUAsSf8mxgUpFohB9LY23Nw5TjHDoR-1l99d92ZwYQ`,
+        'Authorization': bearer,
         'Access-Control-Allow-Origin': '*'
       }
   };

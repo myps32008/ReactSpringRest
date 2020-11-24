@@ -62,7 +62,7 @@ namespace TestApp
             app.UseRouting();
 
             app.UseCors();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

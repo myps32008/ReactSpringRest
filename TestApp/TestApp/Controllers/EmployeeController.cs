@@ -4,20 +4,20 @@ using Contracts;
 using DTO;
 using Entities.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace App.Controllers
-{    
+{
+    [Authorize]
     public class EmployeeController : ProjectBaseController
     {
         private readonly IEmployeesRepository _employeeRepo;
         private readonly IMapper _mapper;
         public EmployeeController(
-            ILoggerProject logger, 
+            ILoggerProject logger,
             IConfiguration configuration,
             IEmployeesRepository employeesRepository,
             IMapper mapper)
