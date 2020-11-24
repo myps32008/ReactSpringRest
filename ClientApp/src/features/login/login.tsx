@@ -2,7 +2,7 @@ import { Form, Input, Button,  Checkbox } from 'antd';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from "react-router-dom";
-import { userLogin } from './loginSlice';
+import { userLogin, testAuthen } from './loginSlice';
 import logo from '../../static/images/logo192.png';
 import { IAppStore } from '../../const/interface';
 
@@ -18,7 +18,8 @@ const LoginForm = (props:any) => {
         const account = form.getFieldValue("username");
         const password = form.getFieldValue("password");
         // if (userStatus.loading) return;
-        dispatch(userLogin({id: 1}));        
+        dispatch(userLogin({account, password}));
+        dispatch(testAuthen());
     };
     useEffect(()=>{
         if (userStatus.loginStatus) {

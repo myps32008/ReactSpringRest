@@ -18,12 +18,24 @@ const initialState: IUserInfo = _user || {
 }
 const client = http.internal
 export const userLogin = createAsyncThunk('userLogin', 
-  async (params:{id: number}, thunkApi) => {       
-    const result = await client.get('Employee/FindEmployee', {
+  async (params:{account: string, password: string}, thunkApi) => {    
+    const result = await client.post('Authen/Login', {
       params: {
-        id: params.id
+        login: {
+          UserName: params.account,
+          Password: params.password
+        }
       }
-    });        
+    });            
+  return result.data;
+});
+
+export const testAuthen = createAsyncThunk('testAuthen', 
+  async (_, thunkApi) => {
+    const config = {
+      headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDYyMDg2MTcsImlzcyI6IlRlc3QuY29tIiwiYXVkIjoiVGVzdC5jb20ifQ.RzUAsSf8mxgUpFohB9LY23Nw5TjHDoR-1l99d92ZwYQ` }
+  };
+    const result = await Axios.get('https://localhost:44326//Employee/GetEmployee', config);            
   return result.data;
 });
 
@@ -43,11 +55,25 @@ export const userInfoSlice = createSlice({
     'userLogin/fulfilled': (state, action) => {      
       // state.loginStatus = action.payload.status;      
       // state.token = action.payload.token;
-      state.loading = false;
-      state.token = action.payload.data.firstName;
+      state.loading = false;      
+      state.token = action.payload.token;
       // cookies.set("user", state);
     },
     'userLogin/rejected': (state, action) => {
+      state.loginStatus = false;
+      state.loading = false;
+      state.message = action.error.message;
+    },
+    'testAuthen/pending': (state, action) => {      
+      state.loading = true;
+    },
+    'testAuthen/fulfilled': (state, action) => {      
+      // state.loginStatus = action.payload.status;      
+      // state.token = action.payload.token;
+      state.loading = false;      
+      // cookies.set("user", state);
+    },
+    'testAuthen/rejected': (state, action) => {
       state.loginStatus = false;
       state.loading = false;
       state.message = action.error.message;

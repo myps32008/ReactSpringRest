@@ -1,9 +1,0 @@
-D:\Working\ReactSpringRest\TestApp\DTO\bin\Debug\netcoreapp3.1\DTO.deps.json
-D:\Working\ReactSpringRest\TestApp\DTO\bin\Debug\netcoreapp3.1\DTO.dll
-D:\Working\ReactSpringRest\TestApp\DTO\bin\Debug\netcoreapp3.1\DTO.pdb
-D:\Working\ReactSpringRest\TestApp\DTO\obj\Debug\netcoreapp3.1\DTO.csprojAssemblyReference.cache
-D:\Working\ReactSpringRest\TestApp\DTO\obj\Debug\netcoreapp3.1\DTO.AssemblyInfoInputs.cache
-D:\Working\ReactSpringRest\TestApp\DTO\obj\Debug\netcoreapp3.1\DTO.AssemblyInfo.cs
-D:\Working\ReactSpringRest\TestApp\DTO\obj\Debug\netcoreapp3.1\DTO.csproj.CoreCompileInputs.cache
-D:\Working\ReactSpringRest\TestApp\DTO\obj\Debug\netcoreapp3.1\DTO.dll
-D:\Working\ReactSpringRest\TestApp\DTO\obj\Debug\netcoreapp3.1\DTO.pdb

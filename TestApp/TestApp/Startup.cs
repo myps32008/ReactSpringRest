@@ -35,9 +35,11 @@ namespace TestApp
             services.ConfigureCors();
             services.ConfigureDbContext(Configuration);
             services.ConfigureRepository();
+            services.RegisterService();
             services.AddControllers();
             services.AddSwaggerGen();
             services.AddAutoMapper(typeof(Startup));
+            services.ConfigureJwtAuthen(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
