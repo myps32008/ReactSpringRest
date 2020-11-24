@@ -33,9 +33,12 @@ export const userLogin = createAsyncThunk('userLogin',
 export const testAuthen = createAsyncThunk('testAuthen', 
   async (_, thunkApi) => {
     const config = {
-      headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDYyMDg2MTcsImlzcyI6IlRlc3QuY29tIiwiYXVkIjoiVGVzdC5jb20ifQ.RzUAsSf8mxgUpFohB9LY23Nw5TjHDoR-1l99d92ZwYQ` }
+      headers: { 
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDYyMDg2MTcsImlzcyI6IlRlc3QuY29tIiwiYXVkIjoiVGVzdC5jb20ifQ.RzUAsSf8mxgUpFohB9LY23Nw5TjHDoR-1l99d92ZwYQ`,
+        'Access-Control-Allow-Origin': '*'
+      }
   };
-    const result = await Axios.get('https://localhost:44326//Employee/GetEmployee', config);            
+    const result = await Axios.get('https://localhost:44326/Employee/GetEmployee', config);            
   return result.data;
 });
 
