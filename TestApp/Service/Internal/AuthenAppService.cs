@@ -20,7 +20,7 @@ namespace Service.Internal
                 config["Jwt:Issuer"],
                 config["Jwt:Issuer"],
                 null,
-                expires: DateTime.Now.AddMinutes(120),
+                expires: DateTime.Now.AddMinutes(2),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import {IUserInfo} from '../../const/interface';
+import {IUserInfo, IAppStore} from '../../const/interface';
 import http from '../../utils/http.client';
 import { Cookies } from 'react-cookie';
 import Axios from 'axios';
+import { isExpired } from 'react-jwt';
 
 const cookies = new Cookies();
 const _user = cookies.get("user"); 
@@ -58,8 +59,9 @@ export const userInfoSlice = createSlice({
       state.loading = true;
     },
     'userLogin/fulfilled': (state, action) => {      
-      // state.loginStatus = action.payload.status;      
-      // state.token = action.payload.token;
+      if (action.payload.token) {
+        state.loginStatus = true;
+      }
       state.loading = false;      
       state.token = action.payload.token;
       // cookies.set("user", state);
@@ -87,5 +89,7 @@ export const userInfoSlice = createSlice({
 });
 
 export const { updateUserInfo } = userInfoSlice.actions;
+
+export const isExistActiveToken = (state: IAppStore) => state.userInfo.token && !isExpired(state.userInfo.token);
 
 export default userInfoSlice.reducer;
