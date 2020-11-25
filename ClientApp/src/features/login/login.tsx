@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from "react-router-dom";
 import { userLogin, testAuthen, isExistActiveToken } from './loginSlice';
 import logo from '../../static/images/logo192.png';
-import { IAppStore } from '../../const/interface';
-import { decodeToken } from 'react-jwt';
 
 const LoginForm = (props:any) => {
     const dispatch = useDispatch();
@@ -14,7 +12,6 @@ const LoginForm = (props:any) => {
     const location = useLocation();
     const { from } :any = location.state || { from: { pathname: "/" } };
     const isAuthen = useSelector(isExistActiveToken);    
-    const test = decodeToken(useSelector((state:IAppStore) => state.userInfo.token));
 
     const login = () => {
         const account = form.getFieldValue("username");

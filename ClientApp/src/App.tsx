@@ -7,11 +7,8 @@ import {
   Route,  
   Redirect, 
 } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
-import { IAppStore } from './const/interface';
+import { useSelector } from 'react-redux';
 import LoginForm from './features/login/login';
-import Cookies from 'universal-cookie';
-import { isExpired } from 'react-jwt';
 import {isExistActiveToken} from './features/login/loginSlice';
 
 function App() {
