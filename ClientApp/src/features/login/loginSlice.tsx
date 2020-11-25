@@ -31,8 +31,7 @@ export const userLogin = createAsyncThunk('userLogin',
 });
 
 export const testAuthen = createAsyncThunk('testAuthen', 
-  async (_, {getState} :any) => {
-    debugger;
+  async (_, {getState} :any) => {    
     const data = getState()    
     var bearer = 'Bearer ' + data.userInfo.token;    
     const config = {

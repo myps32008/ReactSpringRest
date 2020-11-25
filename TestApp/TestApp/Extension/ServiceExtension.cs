@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using Repository;
 using Service.Helper;
 using Service.Internal;
+using System;
 using System.Text;
 
 namespace App.Extension
@@ -48,6 +49,7 @@ namespace App.Extension
                     ValidateIssuer = true,
                     ValidateAudience = true,
                     ValidateLifetime = true,
+                    ClockSkew = TimeSpan.Zero,
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = configuration["Jwt:Issuer"],
                     ValidAudience = configuration["Jwt:Issuer"],
