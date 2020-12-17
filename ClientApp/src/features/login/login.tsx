@@ -2,9 +2,8 @@ import { Form, Input, Button,  Checkbox } from 'antd';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from "react-router-dom";
-import { userLogin } from './loginSlice';
+import { userLogin, testAuthen, isExistActiveToken } from './loginSlice';
 import logo from '../../static/images/logo192.png';
-import { IAppStore } from '../../const/interface';
 
 const LoginForm = (props:any) => {
     const dispatch = useDispatch();
@@ -12,20 +11,23 @@ const LoginForm = (props:any) => {
     const history = useHistory();
     const location = useLocation();
     const { from } :any = location.state || { from: { pathname: "/" } };
-    const userStatus = useSelector((state: IAppStore) => state.userInfo);
+    const isAuthen = useSelector(isExistActiveToken);    
 
     const login = () => {
         const account = form.getFieldValue("username");
         const password = form.getFieldValue("password");
-        if (userStatus.loading) return;
-        dispatch(userLogin(account, password));        
+        // if (userStatus.loading) return;
+        dispatch(userLogin({account, password}));        
     };
-    useEffect(()=>{
-        if (userStatus.loginStatus) {
+    const btnTestAuthen = () => {
+        dispatch(testAuthen());
+    }
+    useEffect(()=>{        
+        if (isAuthen) {
             from.pathname = from.pathname === "/login" ? "/" : from.pathname;
             history.replace(from);
         }
-    }, [userStatus.loginStatus, history, from]);
+    }, [isAuthen, history, from]);
 
     return (
         <div id="login-page">
@@ -58,6 +60,11 @@ const LoginForm = (props:any) => {
                 <Form.Item>
                     <Button type="primary" htmlType="submit" onClick={login}>
                     Submit
+                    </Button>
+                </Form.Item>
+                <Form.Item>
+                    <Button type="primary" htmlType="submit" onClick={btnTestAuthen}>
+                    Test
                     </Button>
                 </Form.Item>
             </Form>  

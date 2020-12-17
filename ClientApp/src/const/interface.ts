@@ -5,7 +5,8 @@ export interface IUserInfo {
     role: number,
     menu: IAccessMenu[],
     loginStatus: boolean,
-    loading: boolean
+    loading: boolean,
+    message:''
 }
 
 export interface IAccessMenu {

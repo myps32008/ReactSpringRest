@@ -7,10 +7,9 @@ import {
   Route,  
   Redirect, 
 } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
-import { IAppStore } from './const/interface';
+import { useSelector } from 'react-redux';
 import LoginForm from './features/login/login';
-import Cookies from 'universal-cookie';
+import {isExistActiveToken} from './features/login/loginSlice';
 
 function App() {
   return (
@@ -27,15 +26,15 @@ function App() {
   );
 }
 
-function RouteAuthen({children, ...rest}:any) {  
-  const userStatus = useSelector((state:IAppStore) => state.userInfo);     
+function RouteAuthen({children, ...rest}:any) {    
+  const isAuthen = useSelector(isExistActiveToken);
   return (
     <Route
       {...rest}
       render=
         {
           ({ location }) =>
-            userStatus.loginStatus ? (children) : (
+          isAuthen ? (children) : (
               <Redirect
                 to={{
                   pathname: "/login",
